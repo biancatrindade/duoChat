@@ -1,0 +1,40 @@
+{
+  "name": "duochat",
+  "version": "1.0.0",
+  "description": "Projeto final para o BootCamp {reprogramas} sendo uma API chamada DuoChat ",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest ./test/api.test.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biancatrindade/Projeto-Final-DuoChat.git"
+  },
+  "author": "Bianca Trindade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/biancatrindade/Projeto-Final-DuoChat/issues"
+  },
+  "homepage": "https://github.com/biancatrindade/Projeto-Final-DuoChat#readme",
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.5",
+    "save": "^2.9.0"
+  }
+}
