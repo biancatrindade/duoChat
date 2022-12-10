@@ -35,7 +35,7 @@ const findUserByUsername = async (req, res) => {
     };
 };
 
-const findUserByLevel = qualquercoisa; // esse vai ser treta 
+//const findUserByLevel =
 
 const addNewUser = async (req, res) => {
     try {
@@ -121,6 +121,14 @@ const updateUser = async (req, res) => {
             };
         };
 
+        if(languageId) {
+            const findLanguage = await LanguagesModel.findById(languageId);
+            
+            if (languageId == null) {
+                res.status(404).json({ message: "Language not found" });
+            };
+        };
+
         findUser.name = name || findUser.name;
         findUser.surname = surname || findUser.surname;
         findUser.username = username || findUser.username;
@@ -160,7 +168,7 @@ module.exports = {
     findAllUsers,
     findUserById,
     findUserByUsername,
-    findUserByLevel,
+//findUserByLevel,
     addNewUser,
     updateUser,
     deleteUser

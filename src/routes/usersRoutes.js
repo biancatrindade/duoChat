@@ -9,7 +9,7 @@ router.get("/users/:id", controller.findUserById);
 
 router.get("/users/:username", controller.findUserByUsername);
 
-router.get("/users/:level", controller.findUserByLevel); //como é que vou fazer isso???
+//router.get("/users/:level", controller.findUserByLevel); //como é que vou fazer isso???
 
 router.post("/add", controller.addNewUser);
 
