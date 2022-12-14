@@ -23,6 +23,19 @@ const findLanguageById = async (req, res) => {
     };
 };
 
+const findLanguageByLevel = async (req, res) => {
+    try {
+        const findLevel = await LanguagesModel.find(req.params.level);
+        if(findLevel == null) {
+            res.status(404).json({ message: "No language could be found at this level" });
+        }
+        res.status(200).json(findLevel);
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    };
+};
+
 const addNewLanguage = async (req, res) => {
     try {
         const {
@@ -43,7 +56,7 @@ const addNewLanguage = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: message.error });
+        res.status(500).json({ message: error.message });
     };
 };
 
@@ -82,7 +95,7 @@ const deleteLanguage = async (req, res) => {
             res.status(404).json({ message: "Language not found" });
         };
         await findLanguages.remove();
-        res.status(200).json({ message: `Language with ${id} successfully deleted!` });
+        res.status(200).json({ message: `Language with id ${id} successfully deleted!` });
 
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -92,6 +105,7 @@ const deleteLanguage = async (req, res) => {
 module.exports = {
     findAllLanguages,
     findLanguageById,
+    findLanguageByLevel,
     addNewLanguage,
     updateLanguage,
     deleteLanguage

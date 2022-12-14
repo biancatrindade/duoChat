@@ -1,11 +1,31 @@
 const UsersModel = require("../models/usersSchema");
 const LanguagesModel = require("../models/learningLanguagesSchema");
 const CountriesModel = require("../models/languagesCountriesSchema");
+const SECRET = process.env.SECRET
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const findAllUsers = async (req, res) => {
+    const authHeader = req.get(`Authorization`);
+    const token = authHeader?.split(" ")[1] ?? ("Not authorized");
+    console.log(`My header:`, token);
+
+    if(!token) {
+        return res.status(401);
+    };
+
+    const err = jwt.verify(token, SECRET, function(error){
+        if(error) return error
+    });
+
+    if (err) return res.status(401).send(`Not authorized`)
+
     try {
-        const allUsers = await UsersModel.find().populate("countries"); // Aqui não preciso usar o populate do "languages" também??
+        const allUsers = await UsersModel.find().populate("learningLanguage", "language").populate("countryLanguage"); // Aqui não preciso usar o populate do "languages" também??
         res.status(200).json(allUsers); // STATUS CODE 200: OK
+
+        console.log('passou por aqui')
+
     } catch (error) {
         res.status(500).json({ message: error.message}); // STATUS CODE 500: Internal Server Error
     };
@@ -13,7 +33,7 @@ const findAllUsers = async (req, res) => {
 
 const findUserById = async (req, res) => {
     try {
-        const findUser = await UsersModel.findById(req.params.id).populate("countries");
+        const findUser = await UsersModel.findById(req.params.id).populate("learningLanguage", "language").populate("countryLanguage");
         if (findUser == null) {
             res.status(404).json({ message: "User not available" }); // STATUS CODE 404: Not Found
         }
@@ -25,19 +45,21 @@ const findUserById = async (req, res) => {
 
 const findUserByUsername = async (req, res) => {
     try {
-        const findUsername = await UsersModel.find(req.params.username).populate("countries");
+        const findUsername = await UsersModel.findOne(req.params.username).populate("learningLanguage", "language").populate("countryLanguage");
         if (findUsername == null) {
             res.status(404).json({ message: "User not found" }); // STATUS CODE 404: Not Found
         }
         res.status(200).json(findUsername); // STATUS CODE 200: OK
+        console.log(findUsername)
     } catch (error) {
         res.status(500).json({ message: error.message }); // STATUS CODE 500: Internal Server Error
     };
 };
 
-//const findUserByLevel =
-
 const addNewUser = async (req, res) => {
+    const passwordWithHash = bcrypt.hashSync(req.body.password, 10);
+    req.body.password = passwordWithHash; 
+    
     try {
         const {
             name,
@@ -68,7 +90,7 @@ const addNewUser = async (req, res) => {
             .json({ message: "Required: Enter the Language id."});
         };
         
-        const findLanguage = await LanguagesModel.findById(countryId);
+        const findLanguage = await LanguagesModel.findById(languageId);
 
         if(!findLanguage){
             return res.status(404).json({ message: "Language not found" });
@@ -86,13 +108,30 @@ const addNewUser = async (req, res) => {
         });
         const savedUser = await newUser.save();
         res
-        .status(200)
+        .status(201)
         .json({ message: "New user added successfully!", savedUser });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: error.message });
     };
 }; 
+
+const login = (req, res) => {
+    UsersModel.findOne({ email: req.body.email }, function(error, user) {
+        if(!user){
+            return res.status(404).send(`Email not found: ${req.body.email}`);
+        }
+
+    const validPassword = bcrypt.compareSync(req.body.password, user.password);
+
+    if(!validPassword) {
+        return res.status(403).send(`Wrong password`)
+    }
+    
+    const token = jwt.sign({ email: req.body.email }, SECRET);
+        return res.status(200).send(token)    
+    });
+}
 
 const updateUser = async (req, res) => {
     try {
@@ -116,18 +155,18 @@ const updateUser = async (req, res) => {
         if (countryId) {
             const findCountry = await CountriesModel.findById(countryId);
 
-            if (countryId == null) {
-                res.status(404).json({ message: "Country not found" });
+            if (findCountry == null) {
+                return res.status(404).json({ message: "Country not found" });
             };
         };
 
         if(languageId) {
             const findLanguage = await LanguagesModel.findById(languageId);
             
-            if (languageId == null) {
-                res.status(404).json({ message: "Language not found" });
+            if (findLanguage == null) {
+                return res.status(404).json({ message: "Language not found" });
             };
-        };
+        };       
 
         findUser.name = name || findUser.name;
         findUser.surname = surname || findUser.surname;
@@ -161,15 +200,12 @@ const deleteUser = async (req, res) => {
     };
 };
 
-
-
-
 module.exports = {
     findAllUsers,
     findUserById,
     findUserByUsername,
-//findUserByLevel,
     addNewUser,
+    login,
     updateUser,
     deleteUser
 };

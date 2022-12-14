@@ -14,8 +14,12 @@ const languageCountriesSchema = mongoose.Schema (
         language: {
             type: [String],
             require: true
-        } //aqui não foi referenciado ao schema Learning Language porque pode ser que um idioma falado no país não esteja disponível para aprendizado
-    },
+        }, //aqui não foi referenciado ao schema Learning Language porque pode ser que um idioma falado no país não esteja disponível para aprendizado
+        createdAt: {
+            type: Date,
+            default: new Date ()
+        }
+    },  
     { timestamp: true}
 );
 

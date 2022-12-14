@@ -5,16 +5,16 @@ const router = express.Router();
 
 router.get("/all", controller.findAllUsers);
 
-router.get("/users/:id", controller.findUserById);
+router.get("/:id", controller.findUserById);
 
-router.get("/users/:username", controller.findUserByUsername);
+router.get("/", controller.findUserByUsername);
 
-//router.get("/users/:level", controller.findUserByLevel); //como é que vou fazer isso???
+router.post("/login", controller.login);
 
-router.post("/add", controller.addNewUser);
+router.post("/", controller.addNewUser);
 
-router.patch("/user/:id", controller.updateUser);
+router.patch("/:id", controller.updateUser);
 
-router.delete("/user/:id", controller.deleteUser); 
+router.delete("/:id", controller.deleteUser); 
 
 module.exports = router; 

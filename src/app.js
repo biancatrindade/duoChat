@@ -15,6 +15,6 @@ mongoose.connect();
 
 app.use("/duochat/users", usersRoutes);
 app.use("/duochat/countries", languagesCountriesRoutes);
-app.use("/duochat/learning", learningLanguagesRoutes);
+app.use("/duochat/languages", learningLanguagesRoutes);
 
 module.exports = app;

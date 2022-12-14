@@ -12,12 +12,17 @@ const learningLanguagesSchema = mongoose.Schema (
         },
         level: {
             type: [String],
-            require: true
+            require: true,
+            enum: ['elementary', 'intermediate', 'advanced']
         },
         available: {
             type: Boolean,
             require: true
         },
+        createdAt: {
+            type: Date,
+            default: new Date()
+        }
     },
     { timestamp: true}
 );

@@ -3,14 +3,16 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/all", controller.findAllLanguages);
+router.get("/", controller.findAllLanguages);
 
-router.get("/language/:id", controller.findLanguageById);
+router.get("/:id", controller.findLanguageById);
 
-router.post("/add", controller.addNewLanguage);
+router.get("/:level", controller.findLanguageByLevel);
 
-router.patch("/language/:id", controller.updateLanguage);
+router.post("/", controller.addNewLanguage);
 
-router.delete("/language/:id", controller.deleteLanguage);
+router.patch("/:id", controller.updateLanguage);
+
+router.delete("/:id", controller.deleteLanguage);
 
 module.exports = router; 

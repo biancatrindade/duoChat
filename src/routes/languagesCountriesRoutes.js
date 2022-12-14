@@ -3,16 +3,16 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/all", controller.findAllCountries);
+router.get("/", controller.findAllCountries);
 
-router.get("/countries/:id", controller.findCountryById);
+router.get("/:id", controller.findCountryById);
 
-router.get("/countries/:languages", controller.findCountryByLanguage);
+router.get("/:languages", controller.findCountryByLanguage);
 
-router.post("/add", controller.addNewCountry);
+router.post("/", controller.addNewCountry);
 
-router.patch("/country/:id", controller.updateCountry);
+router.patch("/:id", controller.updateCountry);
 
-router.delete("/coutry/:id", controller.deleteCountry);
+router.delete("/:id", controller.deleteCountry);
 
 module.exports = router; 

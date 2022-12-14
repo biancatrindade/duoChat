@@ -1,6 +1,5 @@
 const CountriesModel = require("../models/languagesCountriesSchema");
 
-
 const findAllCountries = async (req, res) => {
     try {
         const allCountries = await CountriesModel.find()
@@ -92,7 +91,7 @@ const deleteCountry = async (req, res) => {
             return res.status(404).json({ message: "Country not found" });
         };
         await findCountries.remove();
-        res.status(200).json({ message: `Country with ${id} was successfully deleted` });
+        res.status(200).json({ message: `Country with id ${id} was successfully deleted` });
         
     } catch (error) {
         res.status(500).json({ message: error.message });

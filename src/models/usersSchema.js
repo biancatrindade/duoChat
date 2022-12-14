@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema(
             unique: true
         },
         birthDate: {
-            type: Number,
+            type: Date,
             required: true
         },
         email: {
@@ -43,6 +43,11 @@ const userSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref:"Languages"
+        },
+
+        createdAt: {
+            type: Date,
+            default: new Date()
         }
     },
     { timestamp: true }
