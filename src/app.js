@@ -5,7 +5,10 @@ const mongoose = require("./database/dbConnect");
 const usersRoutes = require("./routes/usersRoutes");
 const languagesCountriesRoutes = require("./routes/languagesCountriesRoutes");
 const learningLanguagesRoutes = require("./routes/learningLanguagesRoutes");
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('../swagger/swagger_output.json');
 
+    
 
 const app = express();
 
@@ -16,5 +19,6 @@ mongoose.connect();
 app.use("/duochat/users", usersRoutes);
 app.use("/duochat/countries", languagesCountriesRoutes);
 app.use("/duochat/languages", learningLanguagesRoutes);
+app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 module.exports = app;

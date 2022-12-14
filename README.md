@@ -122,6 +122,6 @@ Você também poderá denunciar um usuário que, após a denuncia, passará por 
 </br>
 
 
-### Esse projeto em constante atualização, sinta-se a vontade para voltar sempre que desejar!
+### Esse projeto está em constante atualização, sinta-se a vontade para voltar sempre que desejar!
 
 Obrigada ❤️👩🏻‍💻
