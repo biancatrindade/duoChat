@@ -49,7 +49,7 @@ const addNewCountry = async (req, res) => {
         });
         const savedCountry = await newCountry.save();
         res
-        .status(200)
+        .status(201)
         .json({ message: "New country added successfully!", savedCountry });
     
     } catch (error) {

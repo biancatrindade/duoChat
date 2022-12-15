@@ -11,18 +11,17 @@ const findAllUsers = async (req, res) => {
     console.log(`My header:`, token);
 
     if(!token) {
-        return res.status(401);
+        return res.status(401); // STATUS CODE 401: Unauthorized
     };
 
     const err = jwt.verify(token, SECRET, function(error){
         if(error) return error
     });
 
-    if (err) return res.status(401).send(`Not authorized`)
+    if (err) return res.status(401).send(`Not authorized`) // STATUS CODE 401: Unauthorized
 
     try {
-        const allUsers = await UsersModel.find().populate("learningLanguage", "language").populate("countryLanguage"); // Aqui não preciso usar o populate do "languages" também??
-        res.status(200).json(allUsers); // STATUS CODE 200: OK
+        const allUsers = await UsersModel.find().populate("learningLanguage", "language").populate("countryLanguage"); 
 
         console.log('passou por aqui')
 
@@ -74,26 +73,26 @@ const addNewUser = async (req, res) => {
 
         if (!countryId) {
             return res
-            .status(400)
+            .status(400) // STATUS CODE 400: Bad Request
             .json({ message: "Required: Enter the Country id."});
         };
 
         const findCountry = await CountriesModel.findById(countryId);
 
         if(!findCountry) {
-            return res.status(404).json({ message: "Country not found" });
+            return res.status(404).json({ message: "Country not found" }); // STATUS CODE 404: Not Found
         };
 
         if(!languageId) {
             return res
-            .status(400)
+            .status(400) // STATUS CODE 400: Bad Request
             .json({ message: "Required: Enter the Language id."});
         };
         
         const findLanguage = await LanguagesModel.findById(languageId);
 
         if(!findLanguage){
-            return res.status(404).json({ message: "Language not found" });
+            return res.status(404).json({ message: "Language not found" }); // STATUS CODE 404: Not Found
         };
 
         const newUser = new UsersModel({
@@ -108,28 +107,28 @@ const addNewUser = async (req, res) => {
         });
         const savedUser = await newUser.save();
         res
-        .status(201)
+        .status(201) // STATUS CODE 201: Created
         .json({ message: "New user added successfully!", savedUser });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message }); // STATUS CODE 500: Internal Server Error
     };
 }; 
 
 const login = (req, res) => {
     UsersModel.findOne({ email: req.body.email }, function(error, user) {
         if(!user){
-            return res.status(404).send(`Email not found: ${req.body.email}`);
+            return res.status(404).send(`Email not found: ${req.body.email}`); // STATUS CODE 404: Not Found
         }
 
     const validPassword = bcrypt.compareSync(req.body.password, user.password);
 
     if(!validPassword) {
-        return res.status(403).send(`Wrong password`)
+        return res.status(403).send(`Wrong password`) // STATUS CODE 403: Forbidden
     }
     
     const token = jwt.sign({ email: req.body.email }, SECRET);
-        return res.status(200).send(token)    
+        return res.status(200).send(token) // STATUS CODE 200: OK
     });
 }
 
@@ -149,14 +148,14 @@ const updateUser = async (req, res) => {
         
         const findUser = await UsersModel.findById(id);
         if (findUser == null) {
-            res.status(404).json({ message: "User not found "});
+            res.status(404).json({ message: "User not found "}); // STATUS CODE 404: Not Found
         };
 
         if (countryId) {
             const findCountry = await CountriesModel.findById(countryId);
 
             if (findCountry == null) {
-                return res.status(404).json({ message: "Country not found" });
+                return res.status(404).json({ message: "Country not found" }); // STATUS CODE 404: Not Found
             };
         };
 
@@ -164,7 +163,7 @@ const updateUser = async (req, res) => {
             const findLanguage = await LanguagesModel.findById(languageId);
             
             if (findLanguage == null) {
-                return res.status(404).json({ message: "Language not found" });
+                return res.status(404).json({ message: "Language not found" }); // STATUS CODE 404: Not Found
             };
         };       
 
@@ -178,10 +177,10 @@ const updateUser = async (req, res) => {
         findUser.learningLanguage = languageId || findUser.learningLanguage;
 
         const savedUser = await findUser.save();
-        res.status(200).json({ message: "User successfully updated!", savedUser });
+        res.status(200).json({ message: "User successfully updated!", savedUser }); // STATUS CODE 200: OK
 
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message }); // STATUS CODE 500: Internal Server Error
     };
 };
 

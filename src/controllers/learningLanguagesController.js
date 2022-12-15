@@ -51,7 +51,7 @@ const addNewLanguage = async (req, res) => {
         });
         const savedLanguage = await newLanguage.save();
         res
-        .status(200)
+        .status(201)
         .json({ message: "New language added successfully!", savedLanguage });
 
     } catch (error) {

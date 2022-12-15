@@ -3,11 +3,11 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", controller.findAllCountries);
+router.get("/all", controller.findAllCountries);
 
 router.get("/:id", controller.findCountryById);
 
-router.get("/:languages", controller.findCountryByLanguage);
+router.get("/", controller.findCountryByLanguage);
 
 router.post("/", controller.addNewCountry);
 

@@ -3,11 +3,11 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", controller.findAllLanguages);
+router.get("/all", controller.findAllLanguages);
 
 router.get("/:id", controller.findLanguageById);
 
-router.get("/:level", controller.findLanguageByLevel);
+router.get("/", controller.findLanguageByLevel);
 
 router.post("/", controller.addNewLanguage);
 
