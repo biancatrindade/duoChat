@@ -16,9 +16,6 @@
         "description": "",
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
           },
@@ -231,38 +228,10 @@
         }
       }
     },
-    "/duochat/countries/": {
+    "/duochat/countries/all": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "country": {
-                  "example": "any"
-                },
-                "language": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -356,37 +325,16 @@
         }
       }
     },
-    "/duochat/countries/{languages}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "languages",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/duochat/languages/": {
+    "/duochat/countries/": {
       "get": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -402,19 +350,30 @@
             "schema": {
               "type": "object",
               "properties": {
+                "country": {
+                  "example": "any"
+                },
                 "language": {
-                  "example": "any"
-                },
-                "level": {
-                  "example": "any"
-                },
-                "available": {
                   "example": "any"
                 }
               }
             }
           }
         ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/duochat/languages/all": {
+      "get": {
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -511,23 +470,47 @@
         }
       }
     },
-    "/duochat/languages/{level}": {
+    "/duochat/languages/": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "level",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "example": "any"
+                },
+                "level": {
+                  "example": "any"
+                },
+                "available": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
           },
           "500": {
             "description": "Internal Server Error"

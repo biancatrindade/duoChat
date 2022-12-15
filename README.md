@@ -2,7 +2,7 @@
 # duoChat: um novo idioma de forma divertida! 🦉💡
 
 <p align="center">
-    <img width="250" src="../duoChat/logos/duochatlogo.png" alt="Logo duoChat">
+    <img width="250" src="https://user-images.githubusercontent.com/109122922/207765261-0a9be8a5-ae59-4f15-a838-078c2e6b5aba.png" alt="Logo duoChat">
 </p>
 
 O projeto **duoChat** desenvolvido por **Bianca Trindade** é uma API que realiza um CRUD e armazena os dados no banco de dados MongoAtlas.
@@ -14,7 +14,7 @@ O projeto **duoChat** desenvolvido por **Bianca Trindade** é uma API que realiz
 <br>
 
 <p align="center">
-    <img width="300" src="../duoChat/logos/reprograma-fundos-escuros.jpg" alt="Logo Reprograma">
+    <img width="300" src="https://user-images.githubusercontent.com/109122922/207765814-7970ee64-9d4a-4353-9694-614f3f310b4d.jpg" alt="Logo Reprograma">
 </p>
 
 A **{reprograma}** é uma iniciativa de impacto social que foca em ensinar programação para mulheres cis e trans que não têm recursos e/ou oportunidades para aprender a programar.
