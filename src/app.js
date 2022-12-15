@@ -8,8 +8,6 @@ const learningLanguagesRoutes = require("./routes/learningLanguagesRoutes");
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('../swagger/swagger_output.json');
 
-    
-
 const app = express();
 
 app.use(express.json());
@@ -19,6 +17,6 @@ mongoose.connect();
 app.use("/duochat/users", usersRoutes);
 app.use("/duochat/countries", languagesCountriesRoutes);
 app.use("/duochat/languages", learningLanguagesRoutes);
-app.use('/minha-rota-de-documentacao', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use('/my-documentation-route', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 module.exports = app;
