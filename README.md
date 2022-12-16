@@ -169,7 +169,7 @@ O conhecimento e a bagagem que adquiri em 4 meses do curso foi fundamental para 
 <br>
 A {reprograma} tem como objetivo reprogramar o mundo e diminuir a desigualdade de gênero na tecnologia, pra mim, a reprograma foi capaz de reprogramar a minha vida.
 <br>
-Agradeço do fundo do meu ❤️ a todas as pessoas envolvidas na iniciativa, a todas as alunas/parceiras da minha turma que me deram o gás necessário para continuar e a minha gata Pantera que, ao ronronar no meu colo em todas as aulas, me deu carinho para codar. 
+Agradeço a todas as pessoas envolvidas na iniciativa, a todas as alunas/parceiras da minha turma que me deram o gás necessário para continuar e a minha gata Pantera que, ao ronronar no meu colo em todas as aulas, me deu carinho para codar. 
 
 <br>
 <br>
