@@ -161,19 +161,22 @@ Você também poderá denunciar um usuário que, após a denuncia, passará por 
 Do fundo do meu coração, não há palavras que descreva o quanto sou grata ao que a {reprograma} me proporcionou. 
 Aqui criei amizades que levarei para o resto da vida, confiança e uma determinação que não sabia que existia. 
 <br>
+<br>
 Entrei uma sonhadora, que decidiu fazer uma transição de carreira em uma área que não conhecia absolutamente nada. 
+<br>
 <br>
 E saio uma desenvolvedora, sabendo que sou capaz de chegar onde desejar e que tenho um grupo de apoio para todos os desafios que vierem a frente.
 <br>
+<br>
 O conhecimento e a bagagem que adquiri em 4 meses do curso foi fundamental para a criação desse projeto.
 <br>
+<br>
 A {reprograma} tem como objetivo reprogramar o mundo e diminuir a desigualdade de gênero na tecnologia, pra mim, a reprograma foi capaz de reprogramar a minha vida.
+<br>
 <br>
 Agradeço a todas as pessoas envolvidas na iniciativa, a todas as alunas/parceiras da minha turma que me deram o gás necessário para continuar e a minha gata Pantera que, ao ronronar no meu colo em todas as aulas, me deu carinho para codar. 
 
 <br>
-<br>
-
 
 <p align="center">
     <img width="400" src="https://i.pinimg.com/originals/bf/fb/42/bffb42a4c2aa6cfab645ea01d8690e4d.gif" alt="Friends Hug">
