@@ -22,9 +22,7 @@ const findAllUsers = async (req, res) => {
 
     try {
         const allUsers = await UsersModel.find().populate("learningLanguage", "language").populate("countryLanguage"); 
-
-        console.log('passou por aqui')
-
+        res.status(200).json(allUsers);
     } catch (error) {
         res.status(500).json({ message: error.message}); // STATUS CODE 500: Internal Server Error
     };
